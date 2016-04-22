@@ -1,0 +1,2 @@
+# MultiSensorAndroidApp
+This application contains program written to enable Wifi and BLE signal strength scanning and data collection in text files. It also contains accelerometer data to be used to control the scanning frequency/rate of BLE and Wifi. To collect the data files wifi.txt and ble.txt it is better to use a root file explorer like ES FILE Explorer to navigate to the folder and copy the files to a non-system folder alternatively you can root our android device and access the files directly.
