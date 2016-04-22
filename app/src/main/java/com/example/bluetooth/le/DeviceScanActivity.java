@@ -82,6 +82,7 @@ public class DeviceScanActivity extends ListActivity implements SensorEventListe
     private double  deltaX = 0;
     private double deltaY = 0;
     private double  deltaZ = 0;
+    
     /*-----------------*/
 
 	@Override
