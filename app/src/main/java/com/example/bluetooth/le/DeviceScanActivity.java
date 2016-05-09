@@ -57,7 +57,7 @@ public class DeviceScanActivity extends ListActivity implements SensorEventListe
 
 	private static final int REQUEST_ENABLE_BT = 1;
 	// BLE Stops scanning after 5 seconds.
-	private static final long SCAN_PERIOD = 1000;
+	private long SCAN_PERIOD = 2000;
 
 	/*-----------END-----------*/
 
@@ -82,6 +82,7 @@ public class DeviceScanActivity extends ListActivity implements SensorEventListe
     private double  deltaX = 0;
     private double deltaY = 0;
     private double  deltaZ = 0;
+	private double acc_norm = 0;
 
     /*-----------------*/
 
@@ -276,8 +277,22 @@ public class DeviceScanActivity extends ListActivity implements SensorEventListe
         deltaX = event.values[0];
         deltaY = event.values[1];
         deltaZ = event.values[2];
-        String accelerometer_data = "x = " + deltaX + " y = " + deltaY + " z = " + deltaZ;
+		double acc_sum = Math.pow(deltaX,2) + Math.pow(deltaY,2) + Math.pow(deltaZ,2);
+		acc_norm = Math.sqrt(acc_sum) ;
+        String accelerometer_data = "Norm = " + acc_norm + "  x = " + deltaX + " y = " + deltaY + " z = " + deltaZ ;
         Log.d("Shadab", accelerometer_data);
+
+		/*if(acc_norm>13){
+
+			SCAN_PERIOD = 2000; // BLE scan update every 1s
+			scanLeDevice(true);
+		}
+		else{
+
+			SCAN_PERIOD = 6000; // BLE scan update every 1s
+			scanLeDevice(true);
+
+		}*/
 
     }
 
@@ -359,7 +374,7 @@ public class DeviceScanActivity extends ListActivity implements SensorEventListe
 			bleScanInterval = bleScanInterval1;
             wifitimer.scheduleAtFixedRate(UpdateWifi, 0, 1000); // wifi scan update every 1s
 			mScanning = true;
-			bletimer.scheduleAtFixedRate(bleScanInterval, 0, 2000); // BLE scan update every 1s
+			bletimer.scheduleAtFixedRate(bleScanInterval, 0, SCAN_PERIOD); // BLE scan update every 1s
 			//mBluetoothAdapter.startLeScan(mLeScanCallback);
 		} else {
 
@@ -377,7 +392,7 @@ public class DeviceScanActivity extends ListActivity implements SensorEventListe
                 } catch (IOException iox) {
                     //do stuff with exception
                     iox.printStackTrace();
-                }
+				}
 
 
             }

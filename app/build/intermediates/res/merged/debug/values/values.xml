@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/Users/psxmsma/Documents/androidProject/BleWifiScanner/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/psxmsma/Documents/androidProject/BleWifiScannerAccelerometer/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="app_name">BleWifiScanner</string>
     <string name="ble_not_supported">BLE is not supported</string>
